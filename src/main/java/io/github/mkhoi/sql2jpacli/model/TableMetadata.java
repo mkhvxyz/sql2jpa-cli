@@ -4,9 +4,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * [EN] Immutable snapshot of a database table parsed from SQL script.
- * [VN] Snapshot cấu trúc bảng. Sử dụng List.copyOf để đảm bảo tính Immutable,
- * chặn đứng side-effect khi data đi qua các phase Mapper/Generator.
+ * Immutable snapshot of a database table parsed from SQL script
+ * Design Rules:
+ * 1. columns -> Forced immutable (List.copyOf) to block downstream side-effects
+ * 2. tableName -> Mandatory, cannot be null or empty
  */
 
 public record TableMetadata(

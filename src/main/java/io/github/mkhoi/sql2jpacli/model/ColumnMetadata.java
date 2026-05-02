@@ -1,7 +1,7 @@
 package io.github.mkhoi.sql2jpacli.model;
 
 /**
- * Metadata for individual SQL columns used to trigger JPA annotations.
+ * Metadata for individual SQL columns used to trigger JPA annotations
  * Mapping Rules:
  * 1. referencedTable != null && isUnique == false -> @ManyToOne
  * 2. referencedTable != null && isUnique == true  -> @OneToOne

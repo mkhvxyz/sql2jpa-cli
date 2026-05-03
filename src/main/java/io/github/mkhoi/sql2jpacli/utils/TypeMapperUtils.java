@@ -1,7 +1,7 @@
 package io.github.mkhoi.sql2jpacli.utils;
 
 /**
- * Utility class for mapping SQL data types to Java data types
+ * Utility class for mapping SQL data types to Java data types.
  * <p>
  * Notes:
  * - Purpose: Translates database-specific types (e.g., VARCHAR, BIGINT)
@@ -18,11 +18,18 @@ public class TypeMapperUtils {
         throw new UnsupportedOperationException("Utility class cannot be instantiated");
     }
 
+    /**
+     * Maps a SQL data type string to its corresponding Java class name.
+     *
+     * @param sqlDataType The raw SQL data type (e.g., "VARCHAR(50)", "DECIMAL(18,2)")
+     * @return The Java type as a String (e.g., "String", "BigDecimal")
+     */
     public static String mapDataType(String sqlDataType) {
         if (sqlDataType == null || sqlDataType.trim().isEmpty()) {
             return "String";
         }
 
+        // Strip precision/scale: "VARCHAR(50)" -> "VARCHAR", "DECIMAL(18,2)" -> "DECIMAL"
         String cleanType = sqlDataType.split("\\(")[0].trim().toUpperCase();
 
         return switch (cleanType) {
@@ -31,8 +38,9 @@ public class TypeMapperUtils {
             case "BIGINT" -> "Long";
             case "DECIMAL", "NUMERIC" -> "BigDecimal";
             case "DATE" -> "LocalDate";
-            case "DATETIME", "TIMESTAMP" -> "LocalDateTime";
+            case "DATETIME", "DATETIME2", "TIMESTAMP" -> "LocalDateTime";
             case "BIT", "BOOLEAN" -> "Boolean";
+            case "UNIQUEIDENTIFIER" -> "UUID";
             default -> "String";
         };
     }

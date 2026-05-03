@@ -32,6 +32,7 @@ class TypeMapperUtilsTest {
     void mapDataType_DateTypes_ReturnsTemporal() {
         assertEquals("LocalDate", TypeMapperUtils.mapDataType("DATE"));
         assertEquals("LocalDateTime", TypeMapperUtils.mapDataType("DATETIME"));
+        assertEquals("LocalDateTime", TypeMapperUtils.mapDataType("DATETIME2"));
         assertEquals("LocalDateTime", TypeMapperUtils.mapDataType("TIMESTAMP"));
     }
 
@@ -45,6 +46,11 @@ class TypeMapperUtilsTest {
     void mapDataType_UnknownOrNull_ReturnsStringAsFallback() {
         assertEquals("String", TypeMapperUtils.mapDataType("SOME_WEIRD_TYPE"));
         assertEquals("String", TypeMapperUtils.mapDataType(null));
-        assertEquals("String", TypeMapperUtils.mapDataType("   "));
+        assertEquals("String", TypeMapperUtils.mapDataType(""));
+    }
+
+    @Test
+    void mapDataType_UUIDTypes_ReturnsUUID() {
+        assertEquals("UUID", TypeMapperUtils.mapDataType("UNIQUEIDENTIFIER"));
     }
 }

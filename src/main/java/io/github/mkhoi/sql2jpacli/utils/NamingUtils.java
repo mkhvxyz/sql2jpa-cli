@@ -1,16 +1,18 @@
 package io.github.mkhoi.sql2jpacli.utils;
 
 /**
- * Utility class for converting SQL naming conventions to Java naming conventions.
+ * Utility class for converting SQL naming conventions to Java naming conventions
  * <p>
  * Notes:
  * - Purpose: Transforms database identifiers (e.g., snake_case or SCREAMING_SNAKE_CASE)
- *   into standard Java identifiers (camelCase for fields, PascalCase for classes).
+ *   into standard Java identifiers (camelCase for fields, PascalCase for classes)
  * <p>
- * - Design: This is a pure stateless utility class. Instantiation is intentionally blocked.
+ * - Design: This is a pure stateless utility class. Instantiation is intentionally blocked
  * <p>
  * - Safety: All methods safely handle null, empty, or blank inputs without throwing exceptions.
+ * - For example, null input returns null, and empty or blank input returns an empty string.
  */
+
 public class NamingUtils {
 
     private NamingUtils() {
